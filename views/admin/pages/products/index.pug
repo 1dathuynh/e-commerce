@@ -1,5 +1,6 @@
 extends ../../layout/default.pug
-
+include ../../mixins/filter-status.pug
+include ../../mixins/search.pug
 block main 
 	h1 Danh sách sản phẩm
 
@@ -8,15 +9,10 @@ block main
 		.card-body
 			.row
 				.col-6
-					each item in filterStatus
-						button(class=`btn btn-sm ml-1 btn-outline-success ${item.class}` button-status=`${item.status}`) #{item.name}
+					+filter-status(filterStatus)
 					//- Tìm kiếm sản phẩm
 				.col-6
-						form(id='form-search')
-							.input-group
-								input(type='text', name='keyword', placeholder='Tìm kiếm', class='form-control', value=keyword)
-								.input-group-append
-									button(type='submit', class='btn btn-success') Tìm kiếm
+					+search(keyword)
 			
 		
 	//- Danh sách sản phẩm

@@ -1,16 +1,17 @@
 // [GET] /admin/products
 const Product = require('../../models/productModel')
-const filterStatus = require('../../helpers/filter-status')
+const filterStatusHelpers = require('../../helpers/filter-status')
+const searchHelpers = require('../../helpers/search')
 module.exports.index = async (req, res) => {
-	filter = filterStatus(req.query);
+	filterStatus = filterStatusHelpers(req.query);
 	
 	let find = {
 		deleted: false,
 	};
 	// xử lý tìm kiếm keyword
-	if(req.query.keyword){
-		const keyword = new RegExp(req.query.keyword, 'i');
-		find.title = keyword;
+	const search = searchHelpers(req.query);
+	if(search.keyword){
+		find.title = search.regex
 	}
 
 	if(req.query.status){
@@ -20,7 +21,7 @@ module.exports.index = async (req, res) => {
 	res.render('admin/pages/products/index', {
 		title: 'Products',
 		products: products,
-		filterStatus: filter,
-		keyword: req.query.keyword
+		filterStatus: filterStatus,
+		keyword: search.keyword
 	});
 }
