@@ -1,0 +1,69 @@
+/* Định dạng cho header */
+.header {
+  background-color: #343a40; /* Màu nền tối */
+	padding: 15px 0; /* Khoảng cách padding bên ngoài */
+	position: sticky; /* Đặt header ở vị trí cố định */
+	top: 0; /* Đặt header ở trên cùng */
+	z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
+}
+.header .inner-logo{
+	font-size: 20px;
+	font-weight: 700;
+	color: #fff;
+}
+
+/* Định dạng tiêu đề */
+.header-title h3 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 600;
+	color: #fff;
+}
+
+
+.body .sider{
+	width: 150px;
+	background-color: #323232;
+	color: #fff;
+	height: calc(100vh - 56px);
+	position: fixed;
+	top: 56px;
+	left: 0;
+}
+
+.body .main{
+	margin-left: 150px; /* Để lại khoảng trống cho sidebar */
+	padding: 20px;
+	background-color: #f8f9fa; /* Màu nền sáng */
+	border-radius: 5px; /* Bo tròn các góc */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+	
+}
+
+.sider .inner-menu ul{
+	list-style: none; /* Bỏ dấu đầu dòng */
+	padding: 0; /* Bỏ khoảng cách padding */
+	margin: 0; /* Bỏ khoảng cách margin */
+}
+.sider .inner-menu ul li{
+	padding: 10px 15px; /* Khoảng cách padding bên trong */
+	cursor: pointer; /* Con trỏ chuột khi hover */
+	transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+}
+.sider .inner-menu ul li a{
+	text-decoration: none; /* Bỏ gạch chân */
+	color: #fff; /* Màu chữ */
+	display: block; /* Để có thể click vào toàn bộ vùng */
+}
+.sider .inner-menu ul li:hover{
+	background-color: #044c7f85; /* Màu nền khi hover */
+	color: #fff; /* Màu chữ khi hover */
+}
+
+a{
+	text-decoration: none; /* Bỏ gạch chân */	
+}
+a:hover{
+	text-decoration: none; /* Gạch chân khi hover */
+	color: #fff;
+}
