@@ -1,20 +1,18 @@
+// bo loc 
 const buttonStatus = document.querySelectorAll('[button-status]');
 if(buttonStatus.length > 0){
 	buttonStatus.forEach((button) => {
 		button.addEventListener('click', (e) => {
 			e.preventDefault();
 			const status = button.getAttribute('button-status');			
-			let params = new URLSearchParams(window.location.search);
-			if(status == ''){
-				params.delete('status');
+			const url = new URL(window.location.href);
+			if(status){
+				url.searchParams.set('status', status);
 			}
 			else{
-				params.set('status', status);
+				url.searchParams.delete('status');
 			}
-			
-			// window.history.pushState({}, '', '?' + params.toString());
-			// cập nhật lại params trong url nhưng không load lại trang
-			 window.location.href = window.location.pathname + (params.toString() ? `?` + params.toString() : "");			
+			window.location.href = url.href;	
 		})
 		
 	})
@@ -38,5 +36,23 @@ if(searchInput){
 }
 
 // End tìm kiếm
+
+
+
+//pagination
+const pagination = document.querySelectorAll('[buttonPagination]')
+pagination.forEach((item) => {
+	const url = new URL(window.location.href);
+	item.addEventListener('click', () => {
+		const page = item.getAttribute('buttonPagination');
+		if(page){
+			url.searchParams.set('page', page);
+		}else{
+			url.searchParams.delete('page');
+		}
+		window.location.href = url.href;
+	})
+	
+})
 
 
