@@ -21,9 +21,23 @@ block main
 	.card-mb-3
 		.card-header Danh sách sản phẩm
 		.card-body
-			table.table.table-hover.table-sm
+			form(action=`${path_url}/products/change-multi?_method=PATCH`, method="POST",form-change-multi)
+				.d-flex.align-items-start
+					.mb-3
+						select(class="form-select" name="type")
+							option(value="active") Hoạt động
+							option(value="inactive") Dừng hoạt động
+					.mb-3
+						input(class="form-control" type="text" name="ids" value="")
+					button(type="submit" class="btn btn-primary") Nhập
+				
+
+
+			table(class="table table-hover table-sm" check-box-multi)
 				thead
 					tr
+						th 
+							input(type="checkbox" name="checkall")
 						th STT 
 						th Hình ảnh
 						th Tiêu đề
@@ -33,6 +47,8 @@ block main
 				tbody
 					each item, index in products
 						tr
+							td
+								input(type="checkbox" name="id" value=item.id)
 							td #{index + 1}
 									td 
 										img(src=item.thumbnail, alt=item.title, width="100px", height="auto")
@@ -45,7 +61,7 @@ block main
 											button(class="badge bg-danger" data-status=item.status data-id= item.id button-change-status) Ngừng Hoạt động
 									td 
 										button(class="btn btn-warning btn-sm") Sửa
-										button(class="btn btn-danger btn-sm") Xóa #{path_url}
+										button(class="btn btn-danger btn-sm") Xóa
 	.card-mb-3
 		+pagination(pagination)
 

@@ -1,6 +1,8 @@
 require('dotenv').config()
 const express = require('express')
 var methodOverride = require('method-override')
+const bodyParser = require('body-parser')
+
 const app = express()
 const port = process.env.PORT;
 const database = require('./config/database')
@@ -17,6 +19,7 @@ app.set('view engine', 'pug')
 app.set('views', './views')
 
 app.use(methodOverride('_method'))
+app.use(bodyParser.urlencoded())
 app.use(express.static('public'))
 
 app.locals.path_url = PATH.ADMIN // tạo biến toàn cục cho tất cả các view 

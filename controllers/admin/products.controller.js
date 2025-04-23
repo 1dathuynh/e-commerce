@@ -25,7 +25,7 @@ module.exports.index = async (req, res) => {
 	const countProduct = await Product.countDocuments(find);
 
 	const objectPagination = paginationHelpers( {
-		limitPage: 1,
+		limitPage: 3,
 		curentPage: 1,
 	}, req.query, countProduct)
 	
@@ -45,4 +45,24 @@ module.exports.changeStatus = async (req, res) => {
 	await Product.updateOne({ _id: req.params.id}, { status: req.params.status})
 	const referer = req.get('Referer');
 	res.redirect(referer);
+}
+
+//[PATCH] admin/products/change-multi
+
+module.exports.changeMulti = async (req,res) => {
+	const type = req.body.type;
+	const id = req.body.ids.split(', ');
+	switch(type){
+		case "active":
+			await Product.updateMany({_id: { $in: id}}, {status: 'active'})
+			break;
+		case "inactive":
+			await Product.updateMany({_id: { $in: id}}, {status: 'inactive'})
+			break;
+		default:
+			break;	
+	}
+	const referer = req.get('Referer');
+	res.redirect(referer);
+	
 }
