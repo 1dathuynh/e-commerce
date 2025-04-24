@@ -25,11 +25,13 @@ block main
 				.d-flex.align-items-start
 					.mb-3
 						select(class="form-select" name="type")
+							option(disabled selected) ---Chọn hành động--- 
 							option(value="active") Hoạt động
 							option(value="inactive") Dừng hoạt động
+							option(value="delete-all") Xóa tất cả
 					.mb-3
-						input(class="form-control" type="text" name="ids" value="")
-					button(type="submit" class="btn btn-primary") Nhập
+						input(class="form-control d-none" type="text" name="ids" value="")
+					button(type="submit" class="btn btn-primary") Áp dụng
 				
 
 
@@ -61,12 +63,12 @@ block main
 											button(class="badge bg-danger" data-status=item.status data-id= item.id button-change-status) Ngừng Hoạt động
 									td 
 										button(class="btn btn-warning btn-sm") Sửa
-										button(class="btn btn-danger btn-sm") Xóa
+										button(class="btn btn-danger btn-sm" data-id=item.id button-delete) Xóa
 	.card-mb-3
 		+pagination(pagination)
 
 	form(action="" method="POST", id="form-change-status", data-path=`${path_url}/products/change-status`)
-
+	form(action="" method="POST", id="form-delete", data-path=`${path_url}/products/delete`)
 
 		script(src="/admin/js/products.js") 	
 
