@@ -59,16 +59,21 @@ formChangeMulti.addEventListener("submit", (e) => {
 	const inputChecked = document.querySelectorAll("input[name='id']:checked");
 	const inputIds = document.querySelector("input[name='ids']");
 	const typeChange = e.target.elements.type.value
-	if(typeChange){
+	if(typeChange == "delete-all"){
 		if(!confirm("Bạn có chắc chắn muốn xóa tất cả sản phẩm đã chọn?")){
 			return;
 		}
 	}
-	
 	if(inputChecked.length > 0){
 		 let ids = [];
 		 inputChecked.forEach(item => {
-			ids.push(item.value)
+			if(typeChange == "change-position"){
+				const position = item.closest('tr').querySelector("input[name='position']").value
+				ids.push(`${item.value}-${position}`)
+			}
+			else{
+				ids.push(item.value)
+			}
 			inputIds.value = ids.join(", ")
 			formChangeMulti.submit();
 		 })
@@ -100,6 +105,4 @@ deleteButton.forEach(item => {
 	}
 	
 })
-
-
 //End delete Products

@@ -2,10 +2,11 @@ extends ../../layout/default.pug
 include ../../mixins/filter-status.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
-
+include ../../mixins/alert.pug
 block main 
+	+alert-success(5000)
 	h1 Danh sách sản phẩm
-
+	
 	.card-mb-3
 		.card-header Bộ lọc và tìm kiếm
 		.card-body
@@ -29,6 +30,7 @@ block main
 							option(value="active") Hoạt động
 							option(value="inactive") Dừng hoạt động
 							option(value="delete-all") Xóa tất cả
+							option(value="change-position") Thay đổi vị trí
 					.mb-3
 						input(class="form-control d-none" type="text" name="ids" value="")
 					button(type="submit" class="btn btn-primary") Áp dụng
@@ -44,6 +46,7 @@ block main
 						th Hình ảnh
 						th Tiêu đề
 						th Giá
+						th Vị trí
 						th Trạng thái
 						th Thao tác
 				tbody
@@ -56,6 +59,9 @@ block main
 										img(src=item.thumbnail, alt=item.title, width="100px", height="auto")
 									td #{item.title}
 									td #{item.price}$
+									td 
+										input(type="number" min='1' value=item.position name="position")
+									
 									td
 										if(item.status == "active") 
 											button(class="badge bg-success" data-status=item.status data-id= item.id button-change-status) Hoạt động

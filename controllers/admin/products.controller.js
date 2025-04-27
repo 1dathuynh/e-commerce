@@ -30,7 +30,10 @@ module.exports.index = async (req, res) => {
 	}, req.query, countProduct)
 	
 	//end pagination	
-	const products = await Product.find(find).limit(objectPagination.limitPage).skip(objectPagination.skipPage);
+	const products = await Product.find(find)
+	.limit(objectPagination.limitPage)
+	.skip(objectPagination.skipPage)
+	.sort({position: "desc"});
 	res.render('admin/pages/products/index', {
 		title: 'Products',
 		products: products,
@@ -43,8 +46,9 @@ module.exports.index = async (req, res) => {
 //[PATCH] admin/products/change-status/:status/:id
 module.exports.changeStatus = async (req, res) => {
 	await Product.updateOne({ _id: req.params.id}, { status: req.params.status})
+	req.flash("success", "Cập nhật trạng thái sản phẩm thành công")
 	const referer = req.get('Referer');
-	res.redirect(referer);
+	res.redirect(referer);	
 }
 
 //[PATCH] admin/products/change-multi
@@ -52,16 +56,34 @@ module.exports.changeStatus = async (req, res) => {
 module.exports.changeMulti = async (req,res) => {
 	const type = req.body.type;
 	const id = req.body.ids.split(', ');
+	
 	switch(type){
 		case "active":
 			await Product.updateMany({_id: { $in: id}}, {status: 'active'})
+			req.flash("success", `Cập nhật trạng thái thành công ${id.length} sản phẩm`)
 			break;
 		case "inactive":
 			await Product.updateMany({_id: { $in: id}}, {status: 'inactive'})
+			req.flash("success", `Cập nhật trạng thái thành công ${id.length} sản phẩm`)
 			break;
 		case "delete-all":
 			await Product.updateMany({_id: { $in: id}}, {deleted: 'true', deletedAt: new Date()})
+			req.flash("success", `Đã xóa thành công ${id.length} sản phẩm`)
 			break;
+		case "change-position":
+			const bulkOps = id.map(item => {
+				const [id, position] = item.split('-')
+				return {
+					updateOne: {
+						filter: {_id: id},
+						update: { $set: {position: position}}
+					}
+				};
+			});
+			await Product.bulkWrite(bulkOps);
+			req.flash("success", `Đã thay đổi vị trí thành công ${id.length} sản phẩm`)
+			break;
+
 		default:
 			break;	
 	}
@@ -73,6 +95,7 @@ module.exports.changeMulti = async (req,res) => {
 
 module.exports.deleteProduct = async(req, res) => {
 	await Product.updateOne({_id:req.params.id }, {deleted: true, deletedAt: new Date()})
+	req.flash("success", `Đã xóa thành công sản phẩm`)
 	const referer = req.get('Referer');
 	res.redirect(referer);
 }
