@@ -1,0 +1,39 @@
+extends ../../layout/default.pug
+block main
+  h1(class="mb-4") Tạo mới sản phẩm
+
+  .card
+    .card-header Thông tin sản phẩm
+    .card-body
+      form(action=`${path_url}/products/create`, id="form-create-product" method="POST")
+        .form-group
+          label(for="title") Tiêu đề
+          input(type="text" class="form-control" id="title" name="title" placeholder="Nhập tên sản phẩm" required)
+        .form-group
+          label(for="description") Mô tả
+          textarea(class="form-control" id="description" name="description" rows="4" placeholder="Nhập mô tả sản phẩm")
+        .form-group
+          label(for="price") Giá
+          input(type="number" class="form-control" id="price" name="price" placeholder="Nhập giá sản phẩm" required)
+        .form-group
+          label(for="discount") % Giảm giá
+          input(type="number" class="form-control" name="discountPercentage" id="discount" value="0" min="0")
+        .form-group
+          label(for="stock") Số lượng
+          input(type="number" class="form-control" name="stock" id="stock" value="0" min="0")
+        .form-group
+          label(for="thumbnail") Hình ảnh
+          input(type="text" class="form-control" id="thumbnail" name="thumbnail")
+        .from-group
+          label(for="position") Vị trí
+          input(type="number" class="form-control" id="position" name="position" placeholder="Tự động tăng" min="1")  
+        .form-group
+          label(for="status") Trạng thái
+          select(class="form-control" id="status" name="status" required)
+            option(value="active") Hoạt động
+            option(value="inactive") Ngừng hoạt động
+
+        .form-group
+          button(type="submit" class="btn btn-primary mt-3") Lưu sản phẩm
+
+  script(src="admin/js/products.js")

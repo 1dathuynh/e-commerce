@@ -54,6 +54,8 @@ module.exports.changeStatus = async (req, res) => {
 //[PATCH] admin/products/change-multi
 
 module.exports.changeMulti = async (req,res) => {
+	console.log(req.body);
+	
 	const type = req.body.type;
 	const id = req.body.ids.split(', ');
 	
@@ -99,3 +101,25 @@ module.exports.deleteProduct = async(req, res) => {
 	const referer = req.get('Referer');
 	res.redirect(referer);
 }
+
+//[GET] admin/products/create
+module.exports.create = async(req, res) => {
+	res.render('admin/pages/products/create.pug')
+}
+
+//[POST] admin/products/create
+module.exports.postCreate = async(req, res) => {
+	req.body.price = parseInt(req.body.price);
+	req.body.stock = parseInt(req.body.stock);
+	req.body.discountPercentage = parseInt(req.body.discountPercentage);
+	if(req.body.position == ''){
+		const count = await Product.countDocuments();
+		req.body.position = count + 1;
+	}else{
+		req.body.position = parseInt(req.body.position)
+	}
+	const newProduct = new Product(req.body);
+	await newProduct.save();
+	res.redirect('/admin/products')
+}
+

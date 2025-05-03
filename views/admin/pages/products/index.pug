@@ -22,18 +22,22 @@ block main
 	.card-mb-3
 		.card-header Danh sách sản phẩm
 		.card-body
-			form(action=`${path_url}/products/change-multi?_method=PATCH`, method="POST",form-change-multi)
-				.d-flex.align-items-start
-					.mb-3
-						select(class="form-select" name="type")
-							option(disabled selected) ---Chọn hành động--- 
-							option(value="active") Hoạt động
-							option(value="inactive") Dừng hoạt động
-							option(value="delete-all") Xóa tất cả
-							option(value="change-position") Thay đổi vị trí
-					.mb-3
-						input(class="form-control d-none" type="text" name="ids" value="")
-					button(type="submit" class="btn btn-primary") Áp dụng
+			.row
+				.col-8 
+					form(action=`${path_url}/products/change-multi?_method=PATCH`, method="POST",form-change-multi)
+						.d-flex.align-items-start
+							.mb-3
+								select(class="form-select" name="type")
+									option(disabled selected) ---Chọn hành động--- 
+									option(value="active") Hoạt động
+									option(value="inactive") Dừng hoạt động
+									option(value="delete-all") Xóa tất cả
+									option(value="change-position") Thay đổi vị trí
+							.mb-3
+								input(class="form-control d-none" type="text" name="ids" value="")
+							button(type="submit" class="btn btn-primary") Áp dụng
+				.col-4 
+					a(href=`${path_url}/products/create` class="btn btn-outline-success") +Thêm mới
 				
 
 
