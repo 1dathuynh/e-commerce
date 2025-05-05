@@ -5,7 +5,7 @@ block main
   .card
     .card-header Thông tin sản phẩm
     .card-body
-      form(action=`${path_url}/products/create`, id="form-create-product" method="POST")
+      form(action=`${path_url}/products/create`, id="form-create-product" method="POST" enctype="multipart/form-data")
         .form-group
           label(for="title") Tiêu đề
           input(type="text" class="form-control" id="title" name="title" placeholder="Nhập tên sản phẩm" required)
@@ -21,9 +21,10 @@ block main
         .form-group
           label(for="stock") Số lượng
           input(type="number" class="form-control" name="stock" id="stock" value="0" min="0")
-        .form-group
+        div(class="form-control" upload-image)
           label(for="thumbnail") Hình ảnh
-          input(type="text" class="form-control" id="thumbnail" name="thumbnail")
+          input(type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" upload-image-input)
+          img(src='' style="max-width: 200px; margin-top: 20px" upload-image-preview )
         .from-group
           label(for="position") Vị trí
           input(type="number" class="form-control" id="position" name="position" placeholder="Tự động tăng" min="1")  
@@ -36,4 +37,4 @@ block main
         .form-group
           button(type="submit" class="btn btn-primary mt-3") Lưu sản phẩm
 
-  script(src="admin/js/products.js")
+  script(src="/admin/js/products.js")

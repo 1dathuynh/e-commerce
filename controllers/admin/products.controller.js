@@ -3,6 +3,7 @@ const Product = require('../../models/productModel')
 const filterStatusHelpers = require('../../helpers/filter-status')
 const searchHelpers = require('../../helpers/search')
 const paginationHelpers = require('../../helpers/pagination')
+const prefixAdmin = require("../../config/system")
 module.exports.index = async (req, res) => {
 	let find = {
 		deleted: false,
@@ -109,6 +110,8 @@ module.exports.create = async(req, res) => {
 
 //[POST] admin/products/create
 module.exports.postCreate = async(req, res) => {
+	console.log(req.file);
+	
 	req.body.price = parseInt(req.body.price);
 	req.body.stock = parseInt(req.body.stock);
 	req.body.discountPercentage = parseInt(req.body.discountPercentage);
@@ -118,8 +121,10 @@ module.exports.postCreate = async(req, res) => {
 	}else{
 		req.body.position = parseInt(req.body.position)
 	}
+
+	req.body.thumbnail = `/uploads/${req.file.filename}`
 	const newProduct = new Product(req.body);
 	await newProduct.save();
-	res.redirect('/admin/products')
+	res.redirect(`${prefixAdmin.ADMIN}/products`)
 }
 

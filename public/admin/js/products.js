@@ -1,8 +1,9 @@
-
 const buttonChangeStatus = document.querySelectorAll('[button-change-status]')
-const formChangeStatuts = document.querySelector('#form-change-status')
+const formChangeStatuts = document.getElementById('form-change-status')
 
-const datapaths = formChangeStatuts.getAttribute('data-path')
+if(formChangeStatuts){
+	const datapaths = formChangeStatuts.getAttribute('data-path')
+}
 
 	
 buttonChangeStatus.forEach((item) => {
@@ -54,42 +55,46 @@ if(checkboxMulti){
 
 //FormChangeMulti
 const formChangeMulti = document.querySelector("[form-change-multi]")
-formChangeMulti.addEventListener("submit", (e) => {
-	e.preventDefault();
-	const inputChecked = document.querySelectorAll("input[name='id']:checked");
-	const inputIds = document.querySelector("input[name='ids']");
-	const typeChange = e.target.elements.type.value
-	if(typeChange == "delete-all"){
-		if(!confirm("Bạn có chắc chắn muốn xóa tất cả sản phẩm đã chọn?")){
-			return;
+if(formChangeMulti){
+	formChangeMulti.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const inputChecked = document.querySelectorAll("input[name='id']:checked");
+		const inputIds = document.querySelector("input[name='ids']");
+		const typeChange = e.target.elements.type.value
+		if(typeChange == "delete-all"){
+			if(!confirm("Bạn có chắc chắn muốn xóa tất cả sản phẩm đã chọn?")){
+				return;
+			}
 		}
-	}
-	if(inputChecked.length > 0){
-		 let ids = [];
-		 inputChecked.forEach(item => {
-			if(typeChange == "change-position"){
-				const position = item.closest('tr').querySelector("input[name='position']").value
-				ids.push(`${item.value}-${position}`)
-			}
-			else{
-				ids.push(item.value)
-			}
-			inputIds.value = ids.join(", ")
-			formChangeMulti.submit();
-		 })
-	}
-	else{
-		alert("Vui lòng chọn ít nhất 1 bản ghi")
-	}
-	
-})
+		if(inputChecked.length > 0){
+			 let ids = [];
+			 inputChecked.forEach(item => {
+				if(typeChange == "change-position"){
+					const position = item.closest('tr').querySelector("input[name='position']").value
+					ids.push(`${item.value}-${position}`)
+				}
+				else{
+					ids.push(item.value)
+				}
+				inputIds.value = ids.join(", ")
+				formChangeMulti.submit();
+			 })
+		}
+		else{
+			alert("Vui lòng chọn ít nhất 1 bản ghi")
+		}
+		
+	})
+}
 
 //End FormChangeMulti
 
 //delete Products
 const deleteButton = document.querySelectorAll("[button-delete]")
 const formDelete = document.querySelector("#form-delete")
-const path = formDelete.getAttribute("data-path")
+if(formDelete){
+	const path = formDelete.getAttribute("data-path")
+}
 
 deleteButton.forEach(item => {
 	if(deleteButton){
@@ -106,3 +111,22 @@ deleteButton.forEach(item => {
 	
 })
 //End delete Products
+
+
+// Preview Image Create Product
+const uploadImage = document.querySelector("[upload-image]")
+if(uploadImage){
+	const uploadImageInput = document.querySelector("[upload-image-input]")
+	const uploadImagePreview = document.querySelector("[upload-image-preview]")
+	uploadImageInput.addEventListener("change", (e) => {
+		console.log(e);
+		
+		const file = e.target.files[0]
+		if(file){
+			uploadImagePreview.src = URL.createObjectURL(file)
+		}
+		
+	})
+}
+
+// End Preview Image Create Product
