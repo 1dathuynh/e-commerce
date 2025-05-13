@@ -1,23 +1,20 @@
 const buttonChangeStatus = document.querySelectorAll('[button-change-status]')
 const formChangeStatuts = document.getElementById('form-change-status')
-
 if(formChangeStatuts){
-	const datapaths = formChangeStatuts.getAttribute('data-path')
-}
-
-	
-buttonChangeStatus.forEach((item) => {
-	item.addEventListener('click', () => {
-		const id = item.getAttribute('data-id')
-		const status = item.getAttribute('data-status')
-		let statusChange = status === 'active' ? 'inactive' : 'active'
-		const action = datapaths + `/${statusChange}/${id}?_method=PATCH` 
-		formChangeStatuts.action = action
-		formChangeStatuts.submit()
+	buttonChangeStatus.forEach((item) => {
+		item.addEventListener('click', () => {
+			const id = item.getAttribute('data-id')
+			const status = item.getAttribute('data-status')
+			let statusChange = status === 'active' ? 'inactive' : 'active'
+			let datapaths = formChangeStatuts.getAttribute('data-path')
+			const action = datapaths + `/${statusChange}/${id}?_method=PATCH` 
+			formChangeStatuts.action = action
+			formChangeStatuts.submit()
+			
+		})
 		
 	})
-	
-})
+}
 
 
 // CheckBox Multi
@@ -130,3 +127,20 @@ if(uploadImage){
 }
 
 // End Preview Image Create Product
+//  Delete Preview Image Create
+
+//  End  Delete Preview Image Create
+
+// Delete Preview Image Upadte
+const removeImagePreview = document.querySelector("#remove-img-preview")
+if(removeImagePreview){
+	removeImagePreview.addEventListener("click", () => {
+		const uploadImagePreview = document.querySelector("[upload-image-preview]")
+		const uploadImageInput = document.querySelector("[upload-image-input]")
+
+		uploadImagePreview.src = "";
+		uploadImageInput.value = "";
+		removeImagePreview.classList.add("remove-image-preview-hidden")
+	})
+}
+// End Delete Preview Image Upadte

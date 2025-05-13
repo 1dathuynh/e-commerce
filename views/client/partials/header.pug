@@ -1,14 +1,66 @@
 header.header
-		.container
-				.row.align-item-center
-						.col-3
-							.inner-logo
-								a(href="/")
-									img(src="/images/logo.png", alt="Logo")
-						.col-9 
-							.inner-menu
-								ul
-									li 
-										a(href="/") Trang chủ
-									li
-										a(href="/products") Sản phẩm
+  .header-tech76
+    .top-bar
+      .top-bar-item
+        i.fas.fa-certificate
+        span
+          | Sản phẩm 
+          strong Chính hãng
+          |  - 
+          strong Xuất VAT
+          |  đầy đủ
+      .top-bar-item
+        i.fas.fa-mobile-alt
+        span
+          strong Tải App Smember
+          |  - Tích điểm & nhận ưu đãi
+      .top-bar-item
+        i.fas.fa-shipping-fast
+        span
+          strong Giao nhanh - Miễn phí
+          |  cho đơn từ 300K
+        i.fas.fa-chevron-right
+    .main-bar
+      .container
+        .logo
+          a(href="/") 
+            img(src='./images/logo.png' alt='CellphoneS Logo')
+        .search-bar
+          .category-button
+            a(href="/products")
+              i.fas.fa-bars
+              span Danh sách
+            
+            
+          .location-button
+            i.fas.fa-map-marker-alt
+            span Xem giá tại Hồ Chí Minh
+
+          input.search-input(type='text' placeholder='Bạn cần tìm gì?')
+        .hotline
+          i.fas.fa-phone-alt
+          span
+            | Gọi mua hàng
+            br
+            strong 1800.2097
+        .store-locator
+          i.fas.fa-map-marker-alt
+          span
+            | Cửa hàng
+            br
+            | gần bạn
+        .order-tracking
+          i.fas.fa-truck
+          span
+            | Tra cứu
+            br
+            | đơn hàng
+        .cart
+          i.fas.fa-shopping-bag
+          span
+            | Giỏ
+            br
+            | hàng
+        .login
+          i.fas.fa-user
+          span Đăng nhập

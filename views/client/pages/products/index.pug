@@ -5,17 +5,28 @@ block main
 		.row
 			.col-12
 				+box-head("Danh sách sản phẩm")
+		.sort-section.mb-3
+			label.sort-label Sắp xếp theo
+					select.sort-select
+						option Xem nhiều
 				
 		.row
 			each item in products
-				.col-4.mb-3
+				.col-3.mb-2
 					.product-item
 						.inner-image
 							img(src=item.thumbnail, alt=item.title)
 						.inner-content
+							span.installment Trả góp 0%
 							h3.inner-title #{item.title}
+							.product-specs
+									span Màn hình: 6.7 inch
+									span Pin: 4323 mAh
 							.inner-price-new #{item.priceNew}$
-							.inner-price-old #{item.price} $
-							.inner-discount #{item.discountPercentage} %
+							.inner-price-old #{item.price}$
+							.inner-discount Giảm: #{item.discountPercentage}%
+							.discount-price Member giảm: 200.000đ
+							.student-discount Sinh viên giảm: 500.000đ
+							.rating ★★★★☆
 							.inner-button
-								a.btn.btn-primary(href="/products/1") Chi tiết
+									a.btn.btn-primary(href="/products/#{item.id}") Chi tiết

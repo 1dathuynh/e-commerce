@@ -104,3 +104,41 @@ a:hover{
 }
 
 /* end Show alert */
+
+
+/* Image Preview */
+[upload-image-preview-wrapper]{
+	position: relative;
+	max-width: 200px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+[upload-image-preview]{
+	border-radius: 6px;
+	width: 100%;
+}
+#remove-img-preview{
+	z-index: 9999;
+	position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  line-height: 20px;
+  text-align: center;
+  padding: 0;
+  transition: background-color 0.2s;
+}
+
+.remove-image-preview-hidden{
+	display: none;
+}
+
+/* End Image Preview */

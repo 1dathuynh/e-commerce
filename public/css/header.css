@@ -1,0 +1,140 @@
+.header-tech76 {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+.header-tech76 .top-bar {
+  background-color: #e8f0fe;
+  padding: 7px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header-tech76 .top-bar-item {
+  display: flex;
+  align-items: center;
+  color: #003b8f;
+  font-size: 14px;
+}
+.header-tech76 .top-bar-item i {
+  margin-right: 5px;
+  color: #003b8f;
+}
+.header-tech76 .main-bar {
+  background-color: #d70018;
+  padding: 15px 20px;
+}
+.header-tech76 .main-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* hoặc space-around nếu bạn thích */
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* nếu bạn muốn responsive khi nhỏ lại */
+}
+.header-tech76 .logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+.header-tech76 .main-bar .logo img{
+	max-width: 80%;
+  max-height: 50px;
+}
+.header-tech76 .search-bar {
+  display: flex;
+}
+.header-tech76 .category-button {
+  background-color: #d70018;
+  color: white;
+  border: 1px solid white;
+  padding: 7px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.header-tech76 a{
+	text-decoration: none;
+	color: white;
+}
+.header-tech76 .category-button i {
+  margin-right: 5px;
+}
+.header-tech76 .location-button {
+  background-color: #d70018;
+  color: white;
+  border: 1px solid white;
+  padding: 7px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.header-tech76 .location-button i {
+  margin-right: 5px;
+}
+.header-tech76 .search-input {
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  width: 300px;
+}
+.header-tech76 .search-button {
+  background-color: white;
+  color: #d70018;
+  border: none;
+  padding: 7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.header-tech76 .hotline {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+	font-size: 14.5px;
+}
+.header-tech76 .hotline i {
+  margin-right: 5px;
+}
+.header-tech76 .store-locator {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+	font-size: 14.5px;
+}
+.header-tech76 .store-locator i {
+  margin-right: 5px;
+}
+.header-tech76 .order-tracking {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+	font-size: 14.5px;
+}
+.header-tech76 .order-tracking i {
+  margin-right: 5px;
+}
+.header-tech76 .cart {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+	font-size: 14.5px;
+}
+.header-tech76 .cart i {
+  margin-right: 5px;
+}
+.header-tech76 .login {
+  color: white;
+  display: flex;
+  align-items: center;
+	font-size: 14.5px;
+}
+.header-tech76 .login i {
+  margin-right: 5px;
+}

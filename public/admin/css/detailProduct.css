@@ -1,0 +1,64 @@
+/* Tổng thể */
+.admin-product-detail {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Tiêu đề */
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Dòng chi tiết */
+.detail-row {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+/* Nhãn */
+.label {
+  width: 150px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Giá trị */
+.value {
+  flex: 1;
+  color: #333;
+}
+
+/* Ảnh sản phẩm */
+.thumbnail-img {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+
+/* Trạng thái */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.status-badge.active {
+  background-color: #d4edda;
+  color: #28a745;
+}
+
+.status-badge.inactive {
+  background-color: #f8d7da;
+  color: #dc3545;
+}

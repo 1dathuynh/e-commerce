@@ -2,3 +2,9 @@ mixin alert-success(time)
 	- if (messages.success)
 			.message.success
 				div(class="alert alert-success" data-time=time show-alert) #{messages.success} <i class="fa-solid fa-xmark" close-alert></i>
+
+
+mixin alert-error(time)
+	- if (messages.error)
+			.message.error
+				div(class="alert alert-danger" data-time=time show-alert) #{messages.error} <i class="fa-solid fa-xmark" close-alert></i>					

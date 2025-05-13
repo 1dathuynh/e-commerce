@@ -5,5 +5,7 @@
 
 
 .env
-models/dist/productModel.dev.js
+
 public/uploads
+dist/
+.dev

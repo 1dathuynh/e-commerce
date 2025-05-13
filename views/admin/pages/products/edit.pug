@@ -1,0 +1,46 @@
+extends ../../layout/default.pug
+include ../../mixins/alert.pug
+
+block main
+	+alert-error(5000)
+	+alert-success(5000)
+	h1(class="mb-4") Chỉnh sửa sản phẩm
+	
+	.card
+		.card-header Thông tin sản phẩm
+		.card-body
+			form(action=`${path_url}/products/edit/${product.id}?_method=PATCH`, id="form-edit-product" method="POST" enctype="multipart/form-data")
+				.form-group
+					label(for="title") Tiêu đề
+					input(type="text" class="form-control" id="title" name="title" placeholder="Nhập tên sản phẩm" required value=product.title)
+				.form-group
+					label(for="description") Mô tả
+					textarea(class="form-control" id="description" name="description" rows="4" placeholder="Nhập mô tả sản phẩm" value=product.description)
+				.form-group
+					label(for="price") Giá
+					input(type="number" class="form-control" id="price" name="price" placeholder="Nhập giá sản phẩm" required value=product.price)
+				.form-group
+					label(for="discount") % Giảm giá
+					input(type="number" class="form-control" name="discountPercentage" id="discount" value=product.discountPercentage min="0")
+				.form-group
+					label(for="stock") Số lượng
+					input(type="number" class="form-control" name="stock" id="stock" value=product.stock min="0")
+				div(upload-image class="form-group")
+					label(for="thumbnail") Hình ảnh
+					input(type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" upload-image-input)
+					div(upload-image-preview-wrapper)
+						img(src=product.thumbnail upload-image-preview )
+						button(id="remove-img-preview" class="" type='button') X
+				.from-group
+					label(for="position") Vị trí
+					input(type="number" class="form-control" id="position" name="position" placeholder="Tự động tăng" min="1" value=product.position)  
+				.form-group
+					label(for="status") Trạng thái
+					select(class="form-control" id="status" name="status" required)
+						option(value="active" selected=(product.status == "active")) Hoạt động
+						option(value="inactive" selected=(product.status == "inactive")) Ngừng hoạt động
+
+				.form-group
+					button(type="submit" class="btn btn-primary mt-3") Chỉnh sửa sản phẩm
+
+	script(src="/admin/js/products.js")
