@@ -19,7 +19,7 @@ database.connect();
 
 
 app.set('view engine', 'pug')
-app.set('views', './views')
+app.set('views', `${__dirname}/views`)
 
 app.use(cookieParser('SAHHSKSH'));
 app.use(session({ cookie: { maxAge: 60000 }}));
@@ -27,7 +27,7 @@ app.use(flash());
 
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({extended: true }))
-app.use(express.static('public'))
+app.use(express.static(`${__dirname}/public`))
 
 app.locals.path_url = PATH.ADMIN // tạo biến toàn cục cho tất cả các view 
 
