@@ -1,0 +1,50 @@
+extends ../../layout/default.pug
+include ../../mixins/box-head.pug
+block main
+	.container.my-3
+		.row
+			.col-12 
+				+box-head(`${product.title}`)
+		.row
+			.col-12
+				if (product.thumbnail)
+					.product-thumbnail.mb-3
+						img(src=product.thumbnail, alt=product.title, class="thumbnail-img")
+
+				if (product.title)
+					.detail-row
+						span.label Tên sản phẩm:
+						span.value #{product.title}
+
+				if (product.price)
+					.detail-row
+						span.label Giá:
+						span.value #{product.price} $
+
+				if (product.discountPercentage)
+					.detail-row
+						span.label Giảm giá:
+						span.value #{product.discountPercentage} %
+
+				if (product.stock)
+					.detail-row
+						span.label Tồn kho:
+						span.value #{product.stock}
+
+				if (product.status)
+					.detail-row
+						span.label Trạng thái:
+						if product.status == 'active'
+							span.status-badge.active Hoạt động
+						else
+							span.status-badge.inactive Ngưng hoạt động
+
+				if (product.position)
+					.detail-row
+						span.label Vị trí:
+						span.value #{product.position}
+
+				if (product.description)
+					.detail-row
+						span.label Mô tả:
+						span.value #{product.description}
