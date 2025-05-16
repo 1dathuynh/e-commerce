@@ -119,10 +119,6 @@ module.exports.postCreate = async(req, res) => {
 	}else{
 		req.body.position = parseInt(req.body.position)
 	}
-	if(req.file){
-		req.body.thumbnail = `/uploads/${req.file.filename}`
-
-	}
 	const newProduct = new Product(req.body);
 	await newProduct.save();
 	res.redirect(`${prefixAdmin.ADMIN}/products`)
@@ -155,10 +151,6 @@ module.exports.patchEdit = async(req, res) => {
 		req.body.stock = parseInt(req.body.stock);
 		req.body.discountPercentage = parseInt(req.body.discountPercentage);
 		req.body.position = parseInt(req.body.position)
-
-		if(req.file){
-			req.body.thumbnail = `/uploads/${req.file.filename}`
-		}
 		try {
 			await Product.updateOne({_id: req.params.id}, req.body)
 			req.flash("success", "Cập nhật sản phẩm thành công")
