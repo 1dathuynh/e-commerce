@@ -29,6 +29,8 @@ app.use(flash());
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({extended: true }))
 app.use(express.static(`${__dirname}/public`))
+app.use('/tinymce', express.static((__dirname, 'node_modules', 'tinymce')));
+
 
 app.locals.path_url = PATH.ADMIN // tạo biến toàn cục cho tất cả các view 
 // CSP middleware

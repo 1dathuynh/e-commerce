@@ -143,3 +143,49 @@ if (removeImagePreview) {
 	})
 }
 // End Delete Preview Image Upadte
+
+
+
+// Sort product
+	const sort = document.querySelector("[sort]")
+	
+	if(sort){
+		const sortSelect = sort.querySelector("[sort-select]")
+		const sortClear = document.querySelector('[sortClear]')
+		const url = new URL(window.location.href);
+		sortSelect.addEventListener("change", (e) => {
+			let name = e.target.name
+			let value = e.target.value
+			value = value.split('-')
+			url.searchParams.set('sortKey', value[0]);
+			url.searchParams.set('sortValue', value[1]);
+			 window.history.pushState({}, '', url.href);
+			 const options = e.target.querySelectorAll('option');
+        options.forEach(option => {
+            option.removeAttribute('selected');  // Loại bỏ selected từ tất cả các option
+        });
+
+        const selectedOption = e.target.selectedOptions[0];
+        selectedOption.setAttribute('selected', 'selected'); 
+		})
+		sortClear.addEventListener("click", () => {
+			url.searchParams.delete('sortKey');
+      url.searchParams.delete('sortValue');
+			window.location.href = url.href;	
+			
+		})
+		// selected 
+		const sortKey = url.searchParams.get('sortKey');
+		const sortValue = url.searchParams.get('sortValue');
+		if(sortKey && sortValue){
+			const value = `${sortKey}-${sortValue}`
+			const options = sortSelect.querySelectorAll("option")
+			options.forEach(item => {
+				if(item.value === value){
+					item.selected = true
+				}
+			})
+		}
+	}
+
+// End Sort product

@@ -1,9 +1,9 @@
-// [GET] /admin/products
 const Product = require('../../models/productModel')
 const filterStatusHelpers = require('../../helpers/filter-status')
 const searchHelpers = require('../../helpers/search')
 const paginationHelpers = require('../../helpers/pagination')
 const prefixAdmin = require("../../config/system")
+// [GET] /admin/products
 module.exports.index = async (req, res) => {
 	let find = {
 		deleted: false,
@@ -31,10 +31,19 @@ module.exports.index = async (req, res) => {
 	}, req.query, countProduct)
 	
 	//end pagination	
+
+	// sort
+	sort = {};
+	if(req.query.sortKey && req.query.sortValue){
+		sort[req.query.sortKey] = req.query.sortValue
+	}else{
+		sort.position = "desc"
+	}
+	// end sort
 	const products = await Product.find(find)
+	.sort(sort)
 	.limit(objectPagination.limitPage)
-	.skip(objectPagination.skipPage)
-	.sort({position: "desc"});
+	.skip(objectPagination.skipPage);
 	res.render('admin/pages/products/index', {
 		title: 'Products',
 		products: products,

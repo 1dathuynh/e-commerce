@@ -15,7 +15,8 @@ block main
 					input(type="text" class="form-control" id="title" name="title" placeholder="Nhập tên sản phẩm" required value=product.title)
 				.form-group
 					label(for="description") Mô tả
-					textarea(class="form-control" id="description" name="description" rows="4" placeholder="Nhập mô tả sản phẩm" value=product.description)
+					input(class="image-mce" type='file' name='my-file' style='display: none;' onchange)
+					textarea(class="form-control tiny-mce" id="description" name="description" rows="4" placeholder="Nhập mô tả sản phẩm" value=product.description)
 				.form-group
 					label(for="price") Giá
 					input(type="number" class="form-control" id="price" name="price" placeholder="Nhập giá sản phẩm" required value=product.price)
