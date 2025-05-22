@@ -1,0 +1,25 @@
+mixin renderTable(items, level)
+	- const indent= '--'.repeat(level)
+	each item, index in items
+		tr
+			td
+				input(type="checkbox" name="id" value=item.id)
+			td #{item.index}
+			td 
+				img(src=item.thumbnail, alt=item.title, width="100px", height="auto")
+			td #{indent} #{item.title}
+			td #{item.parent_title ? item.parent_title : "Không có" }
+			td 
+				input(type="number" min='1' value=item.position name="position")
+			
+			td
+				if(item.status == "active") 
+					button(class="badge bg-success" data-status=item.status data-id= item.id button-change-status) Hoạt động
+				else
+					button(class="badge bg-danger" data-status=item.status data-id= item.id button-change-status) Ngừng Hoạt động
+			td 
+				a(href=`${path_url}/products/details/${item.id}` class="btn btn-secondary btn-sm") Chi tiết
+				a(href=`${path_url}/products/edit/${item.id}` class="btn btn-warning btn-sm mx-1") Sửa
+				button(class="btn btn-danger btn-sm" data-id=item.id button-delete) Xóa
+		if item.child && item.child.length > 0
+			+renderTable(item.child, level + 1)

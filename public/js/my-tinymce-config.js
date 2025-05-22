@@ -20,6 +20,3 @@ tinymce.init({
     }
 }
 });
-
-	console.log("hello tinymce");
-	

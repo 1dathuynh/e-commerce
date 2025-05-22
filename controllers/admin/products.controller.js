@@ -26,7 +26,7 @@ module.exports.index = async (req, res) => {
 	const countProduct = await Product.countDocuments(find);
 
 	const objectPagination = paginationHelpers( {
-		limitPage: 3,
+		limitPage: 5,
 		curentPage: 1,
 	}, req.query, countProduct)
 	
@@ -45,7 +45,7 @@ module.exports.index = async (req, res) => {
 	.limit(objectPagination.limitPage)
 	.skip(objectPagination.skipPage);
 	res.render('admin/pages/products/index', {
-		title: 'Products',
+		pageTitle: 'Products',
 		products: products,
 		filterStatus: filterStatus,
 		keyword: search.keyword,

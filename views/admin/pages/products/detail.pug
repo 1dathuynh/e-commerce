@@ -44,7 +44,7 @@ block main
 		if (product.description)
 			.detail-row
 				span.label Mô tả:
-				span.value #{product.description}
+				span.value !{product.description}
 		a(href=`${path_url}/products/edit/${product.id}` class="btn btn-warning") Chỉnh sửa
 	.admin-product-detail 
 		h3(class="mt-1 page-title") Thông tin SEO:

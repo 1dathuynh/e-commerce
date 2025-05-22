@@ -1,0 +1,43 @@
+extends ../../layout/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/renderOption.pug
+block main
+	h1(class="mb-4") Tạo mới danh mục
+	+alert-error(5000)
+	.card
+		.card-header Thông tin danh mục
+		.card-body
+			form(action=`${path_url}/products-category/create`, method="POST" enctype="multipart/form-data")
+				.form-group.mb-2
+					label(for="title") Tiêu đề
+					input(type="text" class="form-control" id="title" name="title" placeholder="Nhập tên danh mục" required)
+				.form-group.mb-2
+					label(for="parent-id") Danh mục cha
+					//- input(type="text" class="form-control" id="parent-id" name="parent-id" placeholder="Nhập id danh mục cha")
+					select(class="form-select" name="parent_id" id="parent-id")
+						option(value="") ---Chọn danh mục---
+							+renderOption(record, 0)
+				.form-group.mb-2
+					label(for="description") Mô tả
+					input(class="image-mce" type='file' name='my-file' style='display: none;' onchange)
+					textarea(class="form-control tiny-mce" id="description" name="description" rows="4" placeholder="Nhập mô tả sản phẩm")
+				div(class="form-group" upload-image)
+					label(for="thumbnail") Hình ảnh
+					input(type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" upload-image-input)
+					div(upload-image-preview-wrapper)
+						img(src="" upload-image-preview )
+						button(id="remove-img-preview" class="remove-image-preview-hidden" type='button') X
+				.from-group.mb-2
+					label(for="position") Vị trí
+					input(type="number" class="form-control" id="position" name="position" placeholder="Tự động tăng" min="1")  
+				.form-group.mb-2
+					label(for="status") Trạng thái
+					select(class="form-control" id="status" name="status" required)
+						option(value="active") Hoạt động
+						option(value="inactive") Ngừng hoạt động
+
+				.form-group.mb-2
+					button(type="submit" class="btn btn-primary mt-3") +Tạo mới
+
+	script(src="/admin/js/products.js")
+

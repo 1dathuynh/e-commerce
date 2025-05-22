@@ -1,0 +1,6 @@
+mixin renderOption(records, level)
+	- const indent= '-- '.repeat(level)
+	each item in records
+		option(value= item.id)= `${indent} ${item.title}`
+		if item.child && item.child.length > 0
+			+renderOption(item.child, level + 1)
